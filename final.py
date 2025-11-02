@@ -32,7 +32,7 @@ HTML_TEMPLATE = '''
 <html>
 <head>
     <title>Zippy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
@@ -57,8 +57,8 @@ HTML_TEMPLATE = '''
             # padding-bottom: 100px;
             overflow-x: hidden;
             position: relative;
-            touch-action: manipulation; /* Improves touch responsiveness */              
-        .container { max-width: 1140px; width: 100%; margin: 0 auto; padding: 0 8px; }
+            touch-action: manipulation;
+
         }
         
         .orb {
@@ -70,6 +70,7 @@ HTML_TEMPLATE = '''
             animation: float 10s ease-in-out infinite, pulse 5s ease-in-out infinite;
         }
 
+        .container { max-width: 1140px; width: 100%; margin: 0 auto; padding: 0 8px; }
                 
         h1 { color: #1d1d1f; margin-bottom: 8px; font-size: 24px; text-align: center; }
         @media (min-width: 640px) { h1 { font-size: 28px; } }
@@ -177,11 +178,12 @@ HTML_TEMPLATE = '''
             padding: 12px;
             border: 1px solid rgba(209, 213, 219, 0.5);
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 16px !important;
             resize: vertical;
             min-height: 100px;
             background: rgba(255, 255, 255, 0.5);
             transition: all 0.2s;
+            -webkit-text-size-adjust: 100%;
         }
         @media (min-width: 640px) { 
             textarea { padding: 15px; font-size: 16px; }
@@ -210,7 +212,7 @@ HTML_TEMPLATE = '''
             backdrop-filter: blur(10px);
             border-radius: 16px;
             padding: 7px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             cursor: pointer;
             transition: all 0.2s ease;
@@ -218,7 +220,7 @@ HTML_TEMPLATE = '''
             color: inherit;
             position: relative;
             overflow: hidden;
-            word-break: break-all; /* Fix bug: long names wrap */
+            word-break: break-all;
         }
         @media (min-width: 640px) { 
             .file-card { padding: 16px; }
@@ -360,7 +362,7 @@ HTML_TEMPLATE = '''
             transition: all 0.2s;
         }
         @media (min-width: 375px) { 
-            .refresh-btn { bottom: 32px; right: 32px; width: 56px; height: 56px; font-size: 24px; }
+            .refresh-btn { bottom: 32px; right: 32px; width: 50px; height: 50px; font-size: 24px; }
         }
 
         .refresh-btn:hover {
@@ -444,8 +446,8 @@ HTML_TEMPLATE = '''
     <div class="orb w-48 h-48 bg-blue-300 bottom-[10%] right-[10%] animation-delay-6000"></div>
 
     <div class="container relative z-10">
-        <h1 class="font-sans font-medium text-black flex items-center justify-center mb-3 sm:text-3xl text-2xl text-3xl">Zippy</h1>
-        <p class="flex items-center justify-center mb-8 font-sans text-gray-500 text-center text-sm sm:text-xl sm:justify-center justify-start">Seamlessly transfer files and text between your devices with beautiful, modern interface</p>
+        <h1 class="font-sans font-semibold text-black flex items-center justify-center max-[430px]:mb-3 mb-6 max-[430px]:mt-1 mt-7 sm:text-6xl text-3xl">Zippy</h1>
+        <p class="flex items-center justify-center max-[430px]:mb-6 mb-[50px] font-sans text-gray-500 text-center text-sm sm:text-xl sm:justify-center justify-start">Transfer data between your iPhone and PC without any barriers</p>
 
         <div class="tabs">
             <button class="tab active" onclick="switchTab('download')">
@@ -456,15 +458,15 @@ HTML_TEMPLATE = '''
             </button>
         </div>
         
-        <!-- Download from PC Tab -->
-        <div id="download-tab" class="tab-content active">
-            <h2 class="text-base sm:text-lg font-medium mb-4 sm:mb-6 pb-1 border-b-2 border-blue-500 w-fit mx-auto sm:mx-auto mx-0">Files from your PC</h2>
+        <!-- Download -->
+        <div id="download-tab" class="tab-content active min-[640px]:mb-10">
+            <h2 class="text-base sm:text-lg font-medium mb-4 sm:mb-6 pb-1 min-[640px]:mt-6 border-b-2 border-blue-500 w-fit mx-auto sm:mx-auto mx-0">Files from your PC</h2>
             <div id="pcFiles"></div>
         </div>
         
-        <!-- Upload to PC Tab -->
+        <!-- Upload -->
         <div id="upload-tab" class="tab-content">
-            <div class="upload-section">
+            <div class="upload-section min-[640px]:mt-7">
                 <span class="flex items-center gap-2 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600"><path d="M12 3v12"></path><path d="m17 8-5-5-5 5"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path></svg>
                     <h2 class="text-base sm:text-lg font-medium">Upload Files</h2>
@@ -494,8 +496,8 @@ HTML_TEMPLATE = '''
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path></svg>
                     <h2 class="text-base sm:text-lg font-medium">Share Text/Notes</h2>
                 </span>
-                <textarea id="textInput" class="border-gray-200/50 focus:border-blue-300 focus:ring-blue-200/50 min-h-[100px] resize-y text-sm sm:text-base p-2" placeholder="Type or paste text here..."></textarea>             
-                <button onclick="uploadText()" class=" max-[375px]:p-3 mt-3 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-1 sm:py-2 rounded-md text-xs sm:text-sm font-medium hover:from-green-600 hover:to-emerald-700 transition shadow-sm">Share Text</button>         
+                <textarea id="textInput" class="border-gray-200/50 focus:border-blue-300 focus:ring-blue-200/50 min-h-[100px] resize-y text-sm sm:text-base p-2" placeholder="Type or paste text here..."></textarea>
+                <button onclick="uploadText()" class=" max-[430px]:p-3 mt-3 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-1 sm:py-2 rounded-md text-xs sm:text-sm font-medium hover:from-green-600 hover:to-emerald-700 transition shadow-sm">Share Text</button>         
             </div>       
             <div id="uploadStatus" class="status truncate w-full overflow-hidden text-ellipsis whitespace-nowrap"></div>            
             <h2 class="text-base sm:text-lg font-medium mt-6 sm:mt-8 mb-4 sm:mb-6 pb-1 border-b-2 border-blue-500 w-fit mx-auto sm:mx-auto mx-0">Your Uploaded Files</h2>
@@ -537,14 +539,13 @@ HTML_TEMPLATE = '''
             const ext = filename.split('.').pop().toLowerCase();
             const icons = {
                 pdf: '<svg class="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v4m0 0v4m-4-8h8m-8 0H4m4 0v8m8-8h4" /></svg>', // placeholder for pdf
-                jpg: '<svg class="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
-                jpeg: '<svg class="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
-                png: '<svg class="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
                 gif: '<svg class="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
                 mp4: '<svg class="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" /></svg>',
-                // Add more as needed
                 default: '<svg class="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>'
             };
+            if (['jpg', 'jpeg', 'png'].includes(ext)) {
+                return '' ;
+            }
             return icons[ext] || icons['default'];
         }
         
@@ -582,7 +583,7 @@ HTML_TEMPLATE = '''
         function renderFileGrid(files, container, downloadPath) {
             if (files.length === 0) {
                 container.innerHTML = `
-                    <div class="empty-state">
+                    <div class="empty-state items-center justify-center flex flex-col">
                         <svg class=" h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mb-2 sm:mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
                         <h3 class="text-gray-700 font-medium mb-2 text-sm sm:text-base">No files yet</h3>
                         <p class="text-gray-500 text-xs sm:text-sm">${downloadPath === 'pc' ? 'Put files in "pc_to_iphone" folder on your PC' : 'Upload some files from your iPhone'}</p>
