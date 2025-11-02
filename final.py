@@ -31,7 +31,7 @@ HTML_TEMPLATE = '''
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PC ⟷ iPhone Share</title>
+    <title>Zippy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
@@ -49,26 +49,28 @@ HTML_TEMPLATE = '''
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(to bottom, #E0F2FE, #F3E8FF, #FFE4E6);
+            background: linear-gradient(to left, #E0F2FE, #F3E8FF 50%, #FFE4E6);
             padding: 16px;
-            padding-bottom: 100px;
+            # padding-bottom: 100px;
             overflow-x: hidden;
             position: relative;
-            touch-action: manipulation; /* Improves touch responsiveness */
+            touch-action: manipulation; /* Improves touch responsiveness */              
+        .container { max-width: 1140px; width: 100%; margin: 0 auto; padding: 0 8px; }
         }
-
+        
         .orb {
             position: absolute;
+            overflow: hidden;
             border-radius: 50%;
             opacity: 0.4;
             filter: blur(20px);
             animation: float 10s ease-in-out infinite, pulse 5s ease-in-out infinite;
         }
 
-        .container { max-width: 1140px; width: 100%; margin: 0 auto; padding: 0 8px; }
-        
+                
         h1 { color: #1d1d1f; margin-bottom: 8px; font-size: 24px; text-align: center; }
         @media (min-width: 640px) { h1 { font-size: 28px; } }
         
@@ -84,7 +86,7 @@ HTML_TEMPLATE = '''
             padding: 4px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 340px) { 
             .tabs { flex-direction: row; justify-content: center; }
         }
         
@@ -99,12 +101,12 @@ HTML_TEMPLATE = '''
             font-weight: 500;
             width: 100%;
             text-align: center;
-            margin-bottom: 8px;
+            # margin-bottom: 8px;
         }
-        @media (min-width: 640px) { 
-            .tab { width: auto; margin-bottom: 0; padding: 8px 24px; font-size: 16px; }
+        @media (min-width: 375px) { 
+            .tab { width: 100%; margin-bottom: 0; padding: 8px 24px; font-size: 15px; }
         }
-        
+                
         .tab.active {
             background: linear-gradient(to right, #3b82f6, #6366f1);
             color: white;
@@ -207,7 +209,7 @@ HTML_TEMPLATE = '''
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: 12px;
+            padding: 7px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             cursor: pointer;
@@ -244,7 +246,7 @@ HTML_TEMPLATE = '''
             margin-bottom: 4px;
             color: #6b7280;
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .file-icon { font-size: 48px; margin-bottom: 8px; }
         }
         
@@ -255,7 +257,7 @@ HTML_TEMPLATE = '''
             margin-bottom: 4px;
             text-align: center;
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .file-name { font-size: 14px; }
         }
         
@@ -263,7 +265,7 @@ HTML_TEMPLATE = '''
             font-size: 10px;
             color: #6b7280;
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .file-size { font-size: 12px; }
         }
         
@@ -271,10 +273,10 @@ HTML_TEMPLATE = '''
             width: 100%;
             height: 80px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 8px 8px 0 0;
             margin-bottom: 4px;
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .preview-img { height: 120px; margin-bottom: 8px; }
         }
         
@@ -287,7 +289,7 @@ HTML_TEMPLATE = '''
             border-radius: 16px;
             border: 1px dashed #93c5fd;
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .empty-state { padding: 40px; }
         }
         
@@ -298,7 +300,7 @@ HTML_TEMPLATE = '''
             display: none;
             transition: opacity 0.3s;
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .status { padding: 12px; margin: 12px 0; }
         }
         
@@ -333,7 +335,7 @@ HTML_TEMPLATE = '''
             transition: all 0.2s;
             backdrop-filter: blur(4px);
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .delete-btn { top: 8px; right: 8px; width: 24px; height: 24px; font-size: 12px; }
         }
 
@@ -357,7 +359,7 @@ HTML_TEMPLATE = '''
             z-index: 1000;
             transition: all 0.2s;
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .refresh-btn { bottom: 32px; right: 32px; width: 56px; height: 56px; font-size: 24px; }
         }
 
@@ -374,12 +376,13 @@ HTML_TEMPLATE = '''
             margin-top: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .progress-item { padding: 12px; }
         }
 
         .progress-header {
             display: flex;
+            overflow: hidden;
             justify-content: space-between;
             margin-bottom: 4px;
             font-size: 12px;
@@ -427,7 +430,7 @@ HTML_TEMPLATE = '''
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        @media (min-width: 640px) { 
+        @media (min-width: 375px) { 
             .preview-thumbnail { height: 60px; }
         }
     </style>
@@ -436,20 +439,20 @@ HTML_TEMPLATE = '''
 <body>
     <!-- Animated orbs -->
     <div class="orb w-96 h-96 bg-indigo-300 top-[-100px] left-[-100px] animation-delay-0"></div>
-    <div class="orb w-80 h-80 bg-purple-300 top-[20%] right-[-80px] animation-delay-2000"></div>
-    <div class="orb w-64 h-64 bg-pink-300 bottom-[-50px] left-[30%] animation-delay-4000"></div>
+    <div class="orb w-80 h-80 bg-purple-300 top-[20%] right-[0px] animation-delay-2000"></div>
+    <div class="orb w-64 h-64 bg-pink-300 bottom-[-50px] left-[10%] animation-delay-4000"></div>
     <div class="orb w-48 h-48 bg-blue-300 bottom-[10%] right-[10%] animation-delay-6000"></div>
 
     <div class="container relative z-10">
-        <h1 class="font-sans font-medium text-black flex items-center justify-center mb-1 sm:text-3xl text-2xl">PC — iPhone Share</h1>
+        <h1 class="font-sans font-medium text-black flex items-center justify-center mb-3 sm:text-3xl text-2xl text-3xl">Zippy</h1>
         <p class="flex items-center justify-center mb-8 font-sans text-gray-500 text-center text-sm sm:text-xl sm:justify-center justify-start">Seamlessly transfer files and text between your devices with beautiful, modern interface</p>
 
         <div class="tabs">
             <button class="tab active" onclick="switchTab('download')">
-                <p class="text-sm sm:text-base">From PC (Download)</p>
+                <p class="text-sm sm:text-base">Download</p>
             </button>
             <button class="tab" onclick="switchTab('upload')">
-                <p class="text-sm sm:text-base">To PC (Upload)</p>
+                <p class="text-sm sm:text-base">Upload</p>
             </button>
         </div>
         
@@ -491,15 +494,15 @@ HTML_TEMPLATE = '''
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path></svg>
                     <h2 class="text-base sm:text-lg font-medium">Share Text/Notes</h2>
                 </span>
-                <textarea id="textInput" class="border-gray-200/50 focus:border-blue-300 focus:ring-blue-200/50 min-h-[100px] resize-y text-sm sm:text-base" placeholder="Type or paste text here..."></textarea>
-                <button onclick="uploadText()" class="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-1 sm:py-2 rounded-md text-xs sm:text-sm font-medium hover:from-green-600 hover:to-emerald-700 transition shadow-sm">Share Text</button>         
-            </div>           
+                <textarea id="textInput" class="border-gray-200/50 focus:border-blue-300 focus:ring-blue-200/50 min-h-[100px] resize-y text-sm sm:text-base p-2" placeholder="Type or paste text here..."></textarea>             
+                <button onclick="uploadText()" class=" max-[375px]:p-3 mt-3 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-1 sm:py-2 rounded-md text-xs sm:text-sm font-medium hover:from-green-600 hover:to-emerald-700 transition shadow-sm">Share Text</button>         
+            </div>       
             <div id="uploadStatus" class="status truncate w-full overflow-hidden text-ellipsis whitespace-nowrap"></div>            
             <h2 class="text-base sm:text-lg font-medium mt-6 sm:mt-8 mb-4 sm:mb-6 pb-1 border-b-2 border-blue-500 w-fit mx-auto sm:mx-auto mx-0">Your Uploaded Files</h2>
             <div id="uploadedFiles"></div>       
         </div>
         <div class="text-center mt-8 sm:mt-10 mb-5">
-            <p class="text-xs text-gray-500">Developed by Nadika | <a href="https://github.com/nadikaprabhath/file-sharing-server-python-personel-.git" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p class="text-xs text-gray-500">Developed by Nadika Prabhath | <a href="https://github.com/nadikaprabhath" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a></p>
         </div>
     </div> 
 
@@ -580,7 +583,7 @@ HTML_TEMPLATE = '''
             if (files.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        <svg class="h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mb-2 sm:mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
+                        <svg class=" h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mb-2 sm:mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
                         <h3 class="text-gray-700 font-medium mb-2 text-sm sm:text-base">No files yet</h3>
                         <p class="text-gray-500 text-xs sm:text-sm">${downloadPath === 'pc' ? 'Put files in "pc_to_iphone" folder on your PC' : 'Upload some files from your iPhone'}</p>
                     </div>
@@ -673,7 +676,7 @@ HTML_TEMPLATE = '''
                 const progressItem = document.createElement('div');
                 progressItem.className = 'progress-item';
                 progressItem.innerHTML = `
-                    <div class="progress-header">
+                    <div class="progress-header truncate w-full">
                         <span>${file.name} (${formatSize(file.size)})</span>
                         <span id="percent_${i}">0%</span>
                     </div>
