@@ -1,4 +1,5 @@
-# Zippy - Seamless File Transfer Between PC & iPhone
+
+# Zippy
 
 <div align="center">
 
