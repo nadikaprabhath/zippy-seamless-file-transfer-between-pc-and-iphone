@@ -1,5 +1,5 @@
 <p align="center">
-  <b>File Upload Server</b>
+  <b>🚀 Zippy - Seamless File Transfer Between PC & iPhone</b>
 </p>
 
 <p align="center">
@@ -23,178 +23,163 @@
   </a>
 </p>
 
+Transfer files, photos, videos, and text between your PC and iPhone without any barriers
+Features • Installation • Usage • Screenshots • Contributing
+</div>
 
-A simple file upload server that accepts files and text shares from any device on your local network.
+✨ Features
 
-## Features
+📱 Two-Way Transfer - Send files from PC to iPhone and vice versa
+🖼️ Multi-Format Support - Images, videos, documents, audio files, and more
+📝 Text Sharing - Quickly share notes and text snippets
+🎨 Beautiful UI - Modern, responsive interface with glassmorphism design
+⚡ Real-Time Updates - Automatic file list refresh and live notifications
+📊 Upload Progress - Visual progress bars for file uploads
+🗑️ Easy Management - Delete files directly from the web interface
+🔄 Drag & Drop - Intuitive drag-and-drop file upload
+🌐 Local Network - Works entirely on your WiFi network (no internet required)
+🔒 Private - All transfers happen locally, no cloud storage involved
 
-- 📁 Upload multiple file types (images, documents, videos, PDFs)
-- 📝 Share text content directly
-- 🌐 Access from any device on the same network
-- 🔒 File type validation for security
-- ✅ Simple HTTP endpoint for easy integration
-- 📱 iOS Shortcuts integration for quick sharing
+🎯 Supported File Types
 
-## Supported File Types
+Images: JPG, JPEG, PNG, GIF, HEIC
+Videos: MP4, MOV, AVI
+Audio: MP3, WAV, M4A
+Documents: PDF, TXT, DOC, DOCX
+Archives: ZIP, RAR
 
-- **Documents**: txt, pdf, doc, docx
-- **Images**: png, jpg, jpeg, gif
-- **Videos**: mp4, mov
+📋 Prerequisites
 
-## Installation
+Python 3.7 or higher
+PC and iPhone connected to the same WiFi network
 
-1. **Install Python 3.x** Download from [python.org](https://www.python.org/downloads/) if not already installed.
+🔧 Installation
 
-2. **Install Flask**:
-```bash
-pip install flask
-```
+Clone the repository
 
-3. **Download the script** and save it as `server.py`
+bash   git clone https://github.com/nadikaprabhath/zippy.git
+   cd zippy
 
-## Usage
+Install dependencies
 
-### Starting the Server
+bash   pip install flask flask-socketio watchdog
 
-Run the server from your terminal:
+Run the application
 
-```bash
-python server.py
-```
+bash   python app.py
 
-The server will start on `http://0.0.0.0:5000` and be accessible from any device on your network.
+Find your PC's IP address
 
-### Finding Your Server Address
+Windows: Open Command Prompt and type ipconfig
+Mac/Linux: Open Terminal and type ifconfig
+Look for your IPv4 address (usually starts with 192.168.x.x)
 
-1. Find your computer's local IP address:
-   - **Windows**: `ipconfig` (look for IPv4 Address)
-   - **Mac/Linux**: `ifconfig` or `ip addr` (look for inet address)
 
-2. Access the server at: `http://YOUR_IP_ADDRESS:5000/upload`
+Access from iPhone
 
-### Uploading Files
+Open Safari on your iPhone
+Navigate to: http://YOUR_PC_IP:5000
+Bookmark for quick access!
 
-**Using cURL:**
-```bash
-curl -F "file=@/path/to/your/file.jpg" http://YOUR_IP:5000/upload
-```
 
-**Using Python:**
-```python
-import requests
 
-files = {'file': open('document.pdf', 'rb')}
-response = requests.post('http://YOUR_IP:5000/upload', files=files)
-print(response.text)
-```
+🎮 Usage
+From PC to iPhone
 
-**Using JavaScript/Fetch:**
-```javascript
-const formData = new FormData();
-formData.append('file', fileInput.files[0]);
+Place files in the pc_to_iphone/ folder on your PC
+Open the web interface on your iPhone
+Go to the "Download" tab
+Tap any file to download it to your iPhone
 
-fetch('http://YOUR_IP:5000/upload', {
-    method: 'POST',
-    body: formData
-})
-.then(response => response.text())
-.then(data => console.log(data));
-```
+From iPhone to PC
 
-### Sharing Text
+Open the web interface on your iPhone
+Go to the "Upload" tab
+Choose files from your iPhone or use drag & drop
+Files will appear in the iphone_to_pc/ folder on your PC
 
-```bash
-curl -X POST -d "Your text content here" http://YOUR_IP:5000/upload
-```
+Text Sharing
 
-Text will be saved as `shared_text.txt` in the server directory.
+Type or paste text in the text area on the Upload tab
+Click "Share Text"
+Text will be saved as a timestamped .txt file on your PC
 
-## iOS Shortcuts Setup
+📂 Folder Structure
+zippy/
+├── app.py                 # Main Flask application
+├── pc_to_iphone/          # Files from PC (auto-created)
+├── iphone_to_pc/          # Files from iPhone (auto-created)
+└── README.md              # This file
+🖼️ Screenshots
+<div align="center">
+Mobile Interface
+Beautiful, responsive design optimized for iPhone
+Upload Interface
+Drag & drop or select files with progress tracking
+File Management
+Easy browsing and deletion of transferred files
+</div>
+🛠️ Technical Stack
 
-### Shortcut for Files or Photos
+Backend: Flask, Flask-SocketIO
+Frontend: HTML5, TailwindCSS, Vanilla JavaScript
+Real-time: WebSockets (Socket.IO)
+File Monitoring: Watchdog
+Security: Werkzeug secure filename handling
 
-1. Open **Shortcuts** app → Tap **"+"** to create a new shortcut
-2. Add action: Search for **"Get Contents of URL"**
-3. Configure:
-   - **Method**: POST
-   - **URL**: `http://YOUR_LAPTOP_IP:5000/upload` (replace with your actual IP)
-   - **Request Body**: 
-     - Tap the "File" label (or circle next to it) and change type to **Form**
-     - Once set to Form, tap **"Add New Field"** (or + icon)
-     - Choose field type: **File**
-     - Set **Key**: `file` (exactly, lowercase)
-     - Set **Value**: Tap "Choose Variable" → Select **Shortcut Input** (this takes the shared photo/file from the share sheet)
-     - *(Optional)* Add more fields as "Text" type for additional data
-   - **Note**: No need to add Content-Type header – Shortcuts sets "multipart/form-data" automatically for Form with File fields
-4. *(Optional)* Add a **"Show Notification"** action at the end with text like "File sent!" to confirm success
-5. Name it something like **"Share File to Laptop"**
+🔐 Security Notes
 
-**To use**: In Photos app (for photos) or Files app (for files), select the item → Share → More → Run your shortcut. It will send the file to your laptop's server.
+Zippy runs on your local network only
+No data is sent to external servers
+Files are transferred directly between your devices
+Make sure your WiFi network is password-protected
 
-### Shortcut for Text
+🚨 Troubleshooting
+Can't access from iPhone?
 
-1. Create a new shortcut
-2. Add action: **"Get Contents of URL"**
-3. Configure:
-   - **Method**: POST
-   - **URL**: `http://YOUR_LAPTOP_IP:5000/upload`
-   - **Request Body**: 
-     - Tap **"Add New Field"** → Choose **"Text"**
-     - **Key**: (leave blank or use 'text')
-     - **Value**: **Shortcut Input** (or use "Get Clipboard" if sharing copied text)
-4. *(Optional)* Add confirmation notification
-5. Name it **"Share Text to Laptop"**
+Verify both devices are on the same WiFi network
+Check your PC's firewall settings (allow port 5000)
+Try using your PC's IP address instead of localhost
+Restart the Flask application
 
-**To use**: Copy text → Open Shortcuts → Run it. Or add to share sheet for notes/apps.
+Files not appearing?
 
-## Images
+Click the refresh button (bottom right)
+Check the console logs on your PC
+Verify file permissions in the folders
 
-<p align="center">
-  <img src="assets/IMG_3392.PNG" width="250" alt="Screenshot">
-  <img src="assets/IMG_3390.PNG" width="250" alt="Screenshot">
-  <img src="assets/IMG_3391.PNG" width="250" alt="Screenshot">
-</p>
+🤝 Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Configuration
+Fork the repository
+Create your feature branch (git checkout -b feature/AmazingFeature)
+Commit your changes (git commit -m 'Add some AmazingFeature')
+Push to the branch (git push origin feature/AmazingFeature)
+Open a Pull Request
 
-### Change Upload Directory
+📝 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+👨‍💻 Developer
+Nadika Prabhath
 
-Edit this line in the code:
-```python
-app.config['UPLOAD_FOLDER'] = os.getcwd()  # Change to your desired path
-```
+GitHub: @nadikaprabhath
 
-### Add More File Types
+⭐ Show Your Support
+If you find this project useful, please consider giving it a star on GitHub!
+🔮 Future Enhancements
 
-Edit the `ALLOWED_EXTENSIONS` set:
-```python
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'zip', 'mp3'}  # Add your types
-```
+ QR code for quick connection
+ Multiple device support
+ File preview functionality
+ Transfer history
+ Dark mode toggle
+ Password protection option
+ Bulk file operations
 
-### Change Port
 
-Modify the last line:
-```python
-app.run(host='0.0.0.0', port=8080, debug=True)  # Change port number
-```
-
-## Security Notes
-
-⚠️ **Important**: This server is designed for local network use only.
-
-- Change `app.secret_key` to a random string before production use
-- Files are saved to the current directory by default
-- Set `debug=False` in production environments
-- Consider adding authentication for sensitive use cases
-- Only use on trusted networks
-
-## Troubleshooting
-
-**Port already in use:**
-```bash
-# Use a different port
-python app.py --port 5001
-```
+<div align="center">
+Made with ❤️ by Nadika Prabhath
+</div>
 
 **Cannot access from other devices:**
 - Check firewall settings
