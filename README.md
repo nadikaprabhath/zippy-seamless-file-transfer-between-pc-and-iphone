@@ -1,214 +1,378 @@
-<p align="center">
-  <b>🚀 Zippy - Seamless File Transfer Between PC & iPhone</b>
-</p>
-
-<p align="center">
-  <a href="https://github.com/nadikaprabhath" target="_blank">
-    <img src="https://img.shields.io/badge/Follow-Nadika Prabhath-000000?style=for-the-badge&logo=github&logoColor=white" height="30">
-  </a>
-  <a href="https://t.me/your_telegram_link" target="_blank">
-    <img src="https://img.shields.io/badge/Chat-Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" height="30">
-  </a>
-   <a href="https://www.linkedin.com/in/nadikaprabhath" target="_blank">
-    <img src="https://img.shields.io/badge/Chat-linkendin-26A5E4?style=for-the-badge&logo=linkendin&logoColor=white" height="30">
-  </a>
-  <a href="https://github.com/nadikaprabhath/magnet-torrent-downloader/releases/tag/v1.0.0" target="_blank">
-    <img src="https://img.shields.io/badge/Downloads-10-00C853?style=for-the-badge&logo=icloud&logoColor=white" height="30">
-  </a>
-  <a href="#" target="_blank">
-    <img src="https://img.shields.io/badge/Commit_Activity-30/month-2962FF?style=for-the-badge&logo=git&logoColor=white" height="30">
-  </a>
-  <a href="#" target="_blank">
-    <img src="https://img.shields.io/badge/Issues-1_closed-FFD54F?style=for-the-badge&logo=github&logoColor=black" height="30">
-  </a>
-</p>
-
-Transfer files, photos, videos, and text between your PC and iPhone without any barriers
-Features • Installation • Usage • Screenshots • Contributing
-</div>
-
-✨ Features
-
-📱 Two-Way Transfer - Send files from PC to iPhone and vice versa
-🖼️ Multi-Format Support - Images, videos, documents, audio files, and more
-📝 Text Sharing - Quickly share notes and text snippets
-🎨 Beautiful UI - Modern, responsive interface with glassmorphism design
-⚡ Real-Time Updates - Automatic file list refresh and live notifications
-📊 Upload Progress - Visual progress bars for file uploads
-🗑️ Easy Management - Delete files directly from the web interface
-🔄 Drag & Drop - Intuitive drag-and-drop file upload
-🌐 Local Network - Works entirely on your WiFi network (no internet required)
-🔒 Private - All transfers happen locally, no cloud storage involved
-
-🎯 Supported File Types
-
-Images: JPG, JPEG, PNG, GIF, HEIC
-Videos: MP4, MOV, AVI
-Audio: MP3, WAV, M4A
-Documents: PDF, TXT, DOC, DOCX
-Archives: ZIP, RAR
-
-📋 Prerequisites
-
-Python 3.7 or higher
-PC and iPhone connected to the same WiFi network
-
-🔧 Installation
-
-Clone the repository
-
-bash   git clone https://github.com/nadikaprabhath/zippy.git
-   cd zippy
-
-Install dependencies
-
-bash   pip install flask flask-socketio watchdog
-
-Run the application
-
-bash   python app.py
-
-Find your PC's IP address
-
-Windows: Open Command Prompt and type ipconfig
-Mac/Linux: Open Terminal and type ifconfig
-Look for your IPv4 address (usually starts with 192.168.x.x)
-
-
-Access from iPhone
-
-Open Safari on your iPhone
-Navigate to: http://YOUR_PC_IP:5000
-Bookmark for quick access!
-
-
-
-🎮 Usage
-From PC to iPhone
-
-Place files in the pc_to_iphone/ folder on your PC
-Open the web interface on your iPhone
-Go to the "Download" tab
-Tap any file to download it to your iPhone
-
-From iPhone to PC
-
-Open the web interface on your iPhone
-Go to the "Upload" tab
-Choose files from your iPhone or use drag & drop
-Files will appear in the iphone_to_pc/ folder on your PC
-
-Text Sharing
-
-Type or paste text in the text area on the Upload tab
-Click "Share Text"
-Text will be saved as a timestamped .txt file on your PC
-
-📂 Folder Structure
-zippy/
-├── app.py                 # Main Flask application
-├── pc_to_iphone/          # Files from PC (auto-created)
-├── iphone_to_pc/          # Files from iPhone (auto-created)
-└── README.md              # This file
-🖼️ Screenshots
-<div align="center">
-Mobile Interface
-Beautiful, responsive design optimized for iPhone
-Upload Interface
-Drag & drop or select files with progress tracking
-File Management
-Easy browsing and deletion of transferred files
-</div>
-🛠️ Technical Stack
-
-Backend: Flask, Flask-SocketIO
-Frontend: HTML5, TailwindCSS, Vanilla JavaScript
-Real-time: WebSockets (Socket.IO)
-File Monitoring: Watchdog
-Security: Werkzeug secure filename handling
-
-🔐 Security Notes
-
-Zippy runs on your local network only
-No data is sent to external servers
-Files are transferred directly between your devices
-Make sure your WiFi network is password-protected
-
-🚨 Troubleshooting
-Can't access from iPhone?
-
-Verify both devices are on the same WiFi network
-Check your PC's firewall settings (allow port 5000)
-Try using your PC's IP address instead of localhost
-Restart the Flask application
-
-Files not appearing?
-
-Click the refresh button (bottom right)
-Check the console logs on your PC
-Verify file permissions in the folders
-
-🤝 Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-Fork the repository
-Create your feature branch (git checkout -b feature/AmazingFeature)
-Commit your changes (git commit -m 'Add some AmazingFeature')
-Push to the branch (git push origin feature/AmazingFeature)
-Open a Pull Request
-
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-👨‍💻 Developer
-Nadika Prabhath
-
-GitHub: @nadikaprabhath
-
-⭐ Show Your Support
-If you find this project useful, please consider giving it a star on GitHub!
-🔮 Future Enhancements
-
- QR code for quick connection
- Multiple device support
- File preview functionality
- Transfer history
- Dark mode toggle
- Password protection option
- Bulk file operations
-
+# Zippy - Seamless File Transfer Between PC & iPhone
 
 <div align="center">
-Made with ❤️ by Nadika Prabhath
+
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Python](https://img.shields.io/badge/python-3.7+-blue.svg)
+![Flask](https://img.shields.io/badge/flask-2.0+-green.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+**Enterprise-grade local file transfer solution for PC and iPhone**
+
+[Installation](#installation) • [Usage](#usage) • [Features](#features) • [API](#api-reference) • [Contributing](#contributing)
+
 </div>
-
-**Cannot access from other devices:**
-- Check firewall settings
-- Ensure devices are on the same network
-- Verify the correct IP address is being used
-
-**File not saving:**
-- Check write permissions in the upload directory
-- Ensure sufficient disk space
-
-**iOS Shortcut not working:**
-- Verify your laptop's IP address is correct
-- Ensure the server is running
-- Check that both devices are on the same Wi-Fi network
-- Make sure the Request Body is set to "Form" type, not "File" or "JSON"
-
-## Example Use Cases
-
-- Quick file transfers between devices
-- Mobile photo uploads to PC
-- Simple document sharing in local networks
-- Text snippet sharing between devices
-- One-tap photo backup from iPhone to laptop
 
 ---
 
+## Overview
+
+Zippy is a sophisticated Flask-based web application that enables seamless, bidirectional file transfer between PC and iPhone devices over a local network. Built with modern web technologies and real-time communication protocols, Zippy provides a professional-grade solution for cross-platform file sharing without relying on cloud services or external dependencies.
+
+### Key Capabilities
+
+- **Bidirectional Transfer**: Full-duplex file transfer supporting PC→iPhone and iPhone→PC workflows
+- **Real-time Synchronization**: WebSocket-based live updates using Socket.IO for instant file notifications
+- **Multi-format Support**: Comprehensive file type handling including images (JPG, PNG, GIF, HEIC), videos (MP4, MOV, AVI), audio (MP3, WAV, M4A), documents (PDF, DOC, DOCX), and archives (ZIP, RAR)
+- **Progressive Upload**: Chunked file upload with real-time progress tracking and bandwidth optimization
+- **Enterprise UI/UX**: Responsive glassmorphism interface built with TailwindCSS, optimized for mobile-first design
+- **Zero-Configuration Discovery**: Automatic file system monitoring with watchdog integration
+- **Secure Handling**: Werkzeug-based filename sanitization and MIME type validation
+
+## Architecture
+
+```
+┌─────────────────┐         WebSocket         ┌──────────────────┐
+│                 │◄─────────────────────────►│                  │
+│   iPhone/iPad   │      HTTP/REST API        │   Flask Server   │
+│   (Safari)      │◄─────────────────────────►│   (Python 3.7+)  │
+│                 │                           │                  │
+└─────────────────┘                           └──────────────────┘
+                                                        │
+                                                        │
+                                               ┌────────▼─────────┐
+                                               │  File System     │
+                                               │  ┌─────────────┐ │
+                                               │  │pc_to_iphone │ │
+                                               │  └─────────────┘ │
+                                               │  ┌─────────────┐ │
+                                               │  │iphone_to_pc │ │
+                                               │  └─────────────┘ │
+                                               └──────────────────┘
+```
+## Images
+
+<p align="center">
+  <img src="assets/IMG_1.jpeg" width="240" alt="Screenshot">
+  <img src="assets/IMG_2.jpeg" width="240" alt="Screenshot">
+  <img src="assets/IMG_3.jpeg" width="240" alt="Screenshot">
+  <img src="assets/IMG_5.jpeg" width="240" alt="Screenshot">
+</p>
+
+## Installation
+
+### Prerequisites
+
+- Python 3.7 or higher [python.org](https://www.python.org/downloads/)
+- pip package manager
+- Local network connectivity (WiFi/Ethernet)
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/nadikaprabhath/zippy.git
+cd zippy
+
+# Install dependencies
+pip install flask flask-socketio watchdog
+
+# Launch the server
+python app.py
+```
+
+The server will start on `http://0.0.0.0:5000` and automatically:
+- Create required directories (`pc_to_iphone/`, `iphone_to_pc/`)
+- Initialize file system monitoring
+- Start WebSocket server for real-time updates
+
+### Network Configuration
+
+1. Determine your PC's local IP address:
+   ```bash
+   # Windows
+   ipconfig
+   
+   # macOS/Linux
+   ifconfig
+   ```
+
+2. Connect your iPhone to the same network as your PC
+
+3. Access the web interface from Safari:
+   ```
+   http://YOUR_PC_IP:5000
+   ```
+
+## Usage
+
+### PC to iPhone Transfer
+
+1. **Direct File Drop**
+   - Place files in the `pc_to_iphone/` directory
+   - Files are automatically detected via file system monitoring
+   - Real-time notification pushed to connected clients
+
+2. **Web Interface Download**
+   - Navigate to the "Download" tab on your iPhone
+   - Tap any file to initiate download
+   - Automatic MIME type detection for proper file handling
+
+### iPhone to PC Transfer
+
+1. **File Upload**
+   - Access the "Upload" tab
+   - Use drag-and-drop or file picker
+   - Monitor real-time progress bars
+   - Files saved to `iphone_to_pc/` with timestamp suffix
+
+2. **Text/Note Transfer**
+   - Paste or type content in text area
+   - Click "Share Text" button
+   - Saved as timestamped `.txt` file on PC
+
+### File Management
+
+- **Delete**: Hover over file card, click delete button (×)
+- **Refresh**: Click floating refresh button (bottom-right)
+- **Auto-refresh**: Automatic polling every 5 seconds
+
+## Features
+
+### Technical Features
+
+| Feature | Implementation |
+|---------|----------------|
+| Real-time Updates | Socket.IO WebSocket connection with event emitters |
+| File Monitoring | Watchdog observer pattern with event handlers |
+| Progress Tracking | XHR upload progress events with visual indicators |
+| Security | Werkzeug `secure_filename()` sanitization |
+| MIME Detection | Python `mimetypes` module integration |
+| Responsive Design | TailwindCSS utility-first framework |
+| File Validation | Extension whitelist with configurable filters |
+
+### User Experience
+
+- **Glassmorphism UI**: Modern backdrop-filter effects with animated gradients
+- **Drag & Drop**: Native HTML5 drag-and-drop API integration
+- **Mobile Optimized**: Viewport-fit cover with touch-action optimization
+- **Live Notifications**: Status messages with auto-dismiss timers
+- **Image Previews**: Thumbnail generation for visual file types
+- **Smart Sorting**: Most recent files first with timestamp ordering
+
+## API Reference
+
+### REST Endpoints
+
+#### `GET /api/files/<source>`
+List all files from specified source directory.
+
+**Parameters:**
+- `source` (string): Either `"pc"` or `"iphone"`
+
+**Response:**
+```json
+[
+  {
+    "name": "example.jpg",
+    "size": 1048576,
+    "modified": 1704067200.0
+  }
+]
+```
+
+#### `GET /download/<source>/<filename>`
+Download a specific file.
+
+**Parameters:**
+- `source` (string): Directory source
+- `filename` (string): URL-encoded filename
+
+**Response:** Binary file stream with appropriate Content-Type header
+
+#### `POST /upload`
+Upload multiple files from iPhone to PC.
+
+**Request:** `multipart/form-data` with `files` field
+
+**Response:** `200 OK` with upload count
+
+#### `POST /upload/text`
+Upload text content as .txt file.
+
+**Request:** Plain text in request body
+
+**Response:** `200 OK` with filename
+
+#### `DELETE /delete/<source>/<filename>`
+Delete a file from the server.
+
+**Parameters:**
+- `source` (string): Directory source
+- `filename` (string): URL-encoded filename
+
+**Response:** `200 OK` on success
+
+### WebSocket Events
+
+#### `new_file`
+Emitted when new file is detected.
+
+**Payload:**
+```json
+{
+  "folder": "pc" | "iphone"
+}
+```
+
+## Configuration
+
+### Allowed File Extensions
+
+Modify the `ALLOWED_EXTENSIONS` set in `app.py`:
+
+```python
+ALLOWED_EXTENSIONS = {
+    'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'heic',
+    'mp4', 'mov', 'avi', 'mp3', 'wav', 'm4a',
+    'doc', 'docx', 'zip', 'rar'
+}
+```
+
+### Port Configuration
+
+Change the default port (5000) in the server startup:
+
+```python
+socketio.run(app, host='0.0.0.0', port=YOUR_PORT, debug=True)
+```
+
+### Auto-refresh Interval
+
+Adjust the polling interval (default: 5000ms):
+
+```javascript
+setInterval(loadAllFiles, 5000); // milliseconds
+```
+
+## Security Considerations
+
+- **Local Network Only**: Server binds to all interfaces but should be behind firewall
+- **No Authentication**: Suitable for trusted local networks only
+- **Filename Sanitization**: Werkzeug secure_filename prevents path traversal
+- **Extension Whitelist**: Prevents execution of arbitrary file types
+- **No Cloud Storage**: All data remains on local network
+
+### Production Deployment
+
+For production use, implement:
+- HTTPS/TLS encryption
+- Authentication middleware (e.g., Flask-Login)
+- Rate limiting (e.g., Flask-Limiter)
+- CORS configuration for specific origins
+- Input validation and sanitization
+
+## Troubleshooting
+
+### Connection Issues
+
+**Symptom**: Cannot access from iPhone
+
+**Solutions:**
+- Verify both devices on same WiFi network
+- Check PC firewall allows port 5000
+- Disable VPN on both devices
+- Try PC's hostname instead of IP
+
+### File Upload Failures
+
+**Symptom**: Upload progress stalls or fails
+
+**Solutions:**
+- Check disk space on PC
+- Verify file size within limits
+- Ensure stable WiFi connection
+- Check file extension is in whitelist
+
+### Real-time Updates Not Working
+
+**Symptom**: Files don't appear without manual refresh
+
+**Solutions:**
+- Check browser console for WebSocket errors
+- Verify Socket.IO CDN is accessible
+- Restart Flask application
+- Clear browser cache
+
+## Performance Optimization
+
+- **Chunked Uploads**: Files split into chunks for better memory handling
+- **Lazy Loading**: Images load on-demand with error fallbacks
+- **Debounced Events**: File system changes debounced to prevent spam
+- **Progressive Rendering**: File grid renders incrementally
+- **Hardware Acceleration**: CSS transforms use GPU acceleration
+
+## Browser Compatibility
+
+| Browser | Version | Status |
+|---------|---------|--------|
+| Safari (iOS) | 14+ | ✅ Fully Supported |
+| Chrome (iOS) | Latest | ✅ Fully Supported |
+| Firefox (iOS) | Latest | ✅ Fully Supported |
+| Edge (iOS) | Latest | ✅ Fully Supported |
+
+## System Requirements
+
+### Server (PC)
+- **OS**: Windows 10+, macOS 10.14+, Linux (any modern distro)
+- **Python**: 3.7 - 3.12
+- **RAM**: 256MB minimum
+- **Storage**: 100MB + space for transferred files
+- **Network**: WiFi or Ethernet with IPv4
+
+### Client (iPhone)
+- **iOS**: 14.0 or later
+- **Browser**: Safari, Chrome, Firefox, or Edge
+- **Network**: WiFi connection
+
+## About
+
+Zippy was developed to solve the persistent challenge of efficient file transfer between iOS devices and PCs without relying on cloud intermediaries or complex setup procedures. The project emphasizes:
+
+- **Privacy**: All transfers occur locally on your network
+- **Simplicity**: Zero-configuration for end users
+- **Performance**: Optimized for large file transfers with progress tracking
+- **Reliability**: Built on proven technologies (Flask, Socket.IO, Watchdog)
+
+The codebase follows modern Python best practices with clean separation of concerns, RESTful API design, and responsive frontend architecture. Zippy is ideal for developers, content creators, and anyone who frequently transfers files between iOS and desktop environments.
+
 ## Contributing
-Fork the repo, make changes, and submit a pull request. Issues welcome at [github.com/nadikaprabhath/file-sharing-server-python](https://github.com/nadikaprabhath/file-sharing-server-python).
+
+Fork the repo, make changes, and submit a pull request. Issues welcome at [github.com/nadikaprabhath/zippy](https://github.com/nadikaprabhath/zippy-seamless-file-transfer-between-pc-and-iphone.git).
+
+**Development Setup:**
+```bash
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/zippy.git
+
+# Create feature branch
+git checkout -b feature/your-feature-name
+
+# Make changes and commit
+git commit -m "Add: your feature description"
+
+# Push to your fork
+git push origin feature/your-feature-name
+
+# Open pull request on GitHub
+```
+
+**Code Style:**
+- Follow PEP 8 for Python code
+- Use meaningful variable names
+- Add comments for complex logic
+- Test changes before submitting
 
 ## License
-MIT License. Copyright (c) 2025 Nadika Prabhath. See script header for details. 
 
+MIT License. Copyright (c) 2025 Nadika Prabhath. See script header for details.
