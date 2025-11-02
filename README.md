@@ -57,7 +57,6 @@ Zippy is a sophisticated Flask-based web application that enables seamless, bidi
   <img src="assets/IMG_1.jpeg" width="240" alt="Screenshot">
   <img src="assets/IMG_2.jpeg" width="240" alt="Screenshot">
   <img src="assets/IMG_3.jpeg" width="240" alt="Screenshot">
-  <img src="assets/IMG_5.jpeg" width="240" alt="Screenshot">
 </p>
 
 ## Installation
