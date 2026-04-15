@@ -78,7 +78,7 @@ cd zippy
 pip install flask flask-socketio watchdog
 
 # Launch the server
-python app.py
+python server.py
 ```
 
 The server will start on `http://0.0.0.0:5000` and automatically:
